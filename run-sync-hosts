@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+
+this_dir=$(cd $(dirname $0); pwd -P)
+
+$this_dir/sync-hosts/sync-hosts \
+  user@host \
+  $this_dir/sync-hosts.id_rsa \
+  $this_dir/hosts.base \
+  /path/to/etc/hosts
