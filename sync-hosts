@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+import StringIO
+import argparse
+import os
+import subprocess
+import yaml
+
+def run(host, id_path, base_path, output_path):
+    output = subprocess.check_output([
+        "ssh",
+        "-i", id_path,
+        host,
+        "-o", "LogLevel=QUIET"
+    ])
+
+    data = yaml.load(output)
+
+    o = StringIO.StringIO()
+    o.write("# Automatically generated\n")
+    o.write("# From {}\n".format(base_path))
+    with open(base_path, "rt") as f:
+        for line in f.readlines():
+            o.write(line.strip() + "\n")
+    o.write("# Generated\n")
+    for entry in data:
+        o.write("{0:20} {1}\n".format(entry["ip"], " ".join(entry["names"])))
+    output = o.getvalue()
+    o.close()
+
+    with open(output_path, "wt") as f:
+        f.write(output)
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("host")
+    parser.add_argument("id_path", type=os.path.abspath)
+    parser.add_argument("base_path", type=os.path.abspath)
+    parser.add_argument("output_path", type=os.path.abspath)
+
+    args = parser.parse_args()
+    run(args.host, args.id_path, args.base_path, args.output_path)
+
+if __name__ == "__main__":
+    main()

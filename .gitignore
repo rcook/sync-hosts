@@ -1,0 +1,4 @@
+/hosts.base
+/sync-hosts.id_rsa*
+/test
+/testhosts
