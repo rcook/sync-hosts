@@ -30,7 +30,7 @@ git clone https://github.com/rcook/sync-hosts.git
 
 ```bash
 cd /etc/hosts.d
-cp sync-hosts/run-sync-hosts .
+cp sync-hosts/run-sync-hosts.template ./run-sync-hosts
 ```
 
 Then fix up `run-sync-hosts` for your configuration.
