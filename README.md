@@ -1,4 +1,13 @@
-# syncer
+# sync-hosts
+
+Stupid script for syncing host name information from central SSH server to
+local `/etc/hosts` file - because I can't get dnsmasq to work reliably on my
+Raspberry Pi
+
+## Example configuration
+
+Place a `hosts.yaml` file on your server in the home directory.
+[Here's][hosts-yaml-template] an example.
 
 ## Configure
 
@@ -65,4 +74,5 @@ Still logged in as root, edit the crontab using `crontab -e` and add this line o
 
 [MIT License][licence]
 
+[hosts-yaml-template]: hosts.yaml.template
 [licence]: LICENSE
