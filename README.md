@@ -12,6 +12,12 @@ ssh-keygen -t rsa -b 4096 syncer.id_rsa
 command="cat hosts.yaml",no-port-forwarding,no-x11-forwarding,no-agent-forwarding ssh-rsa KEY-DATA HOST-INFO
 ```
 
+## Prerequisites
+
+```bash
+pip install --user pyyaml
+```
+
 ## Licence
 
 [MIT License][licence]
