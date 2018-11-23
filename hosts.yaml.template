@@ -1,10 +1,7 @@
-- ip: 192.168.1.10
-  names:
-  - foo.my.house
-- ip: 192.168.1.11
-  names:
-  - bar.my.house
-- ip: 192.168.1.12
-  names:
-  - qux.my.house
-  - public.mypublicdns.org
+192.168.1.10:
+- foo.my.house
+192.168.1.11:
+- bar.my.house
+192.168.1.12:
+- qux.my.house
+- public.mypublicdns.org

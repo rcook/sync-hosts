@@ -2,6 +2,7 @@
 import StringIO
 import argparse
 import datetime
+import ipaddress
 import os
 import subprocess
 import yaml
@@ -17,14 +18,17 @@ def run(host, id_path, base_path, output_path):
     data = yaml.load(output)
 
     o = StringIO.StringIO()
+
     o.write("# Automatically generated at {}\n".format(datetime.datetime.now()))
     o.write("# From {}\n".format(base_path))
     with open(base_path, "rt") as f:
         for line in f.readlines():
             o.write(line.strip() + "\n")
+
     o.write("# Generated\n")
-    for entry in data:
-        o.write("{0:20} {1}\n".format(entry["ip"], " ".join(entry["names"])))
+    for key, names in sorted(map(lambda (s, ns): (ipaddress.ip_address(unicode(s)), ns), data.iteritems())):
+        o.write("{0:20} {1}\n".format(key, " ".join(sorted(names))))
+
     output = o.getvalue()
     o.close()
 
