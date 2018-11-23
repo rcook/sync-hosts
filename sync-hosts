@@ -26,8 +26,8 @@ def run(host, id_path, base_path, output_path):
             o.write(line.strip() + "\n")
 
     o.write("# Generated\n")
-    for key, names in sorted(map(lambda (s, ns): (ipaddress.ip_address(unicode(s)), ns), data.iteritems())):
-        o.write("{0:20} {1}\n".format(key, " ".join(sorted(names))))
+    for ip_address, names in sorted(map(lambda (s, ns): (ipaddress.ip_address(unicode(s)), ns), data.iteritems())):
+        o.write("{0:20} {1}\n".format(ip_address, " ".join(sorted(names))))
 
     output = o.getvalue()
     o.close()
